@@ -18,7 +18,6 @@ export class UserService {
   connect(user: User) {
     this.currentUser = user;
     localStorage.setItem(USER_KEY, JSON.stringify(user));
-
     this.route.navigate(['/home']);
   }
 
