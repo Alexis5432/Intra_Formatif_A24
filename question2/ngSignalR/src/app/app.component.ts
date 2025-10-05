@@ -44,15 +44,15 @@ export class AppComponent {
       this.pizzaPrice = data;
     });
     
-   this.hubConnection!.on('NombrePizza', (data: { nbPizzas: number; money: number }) => {
+   this.hubConnection!.on('NombresPizza', (data) => {
     this.nbPizzas = data.nbPizzas;
     this.money = data.money;
 });
 
-
-    this.hubConnection!.on('AddArgent', (data) => {
-      this.money = data;
+this.hubConnection!.on('SelectChoice', (data) => {
+      this.selectedChoice = data;
     });
+
 
     this.hubConnection
         .start()
@@ -81,5 +81,6 @@ export class AppComponent {
   }
 
   buyPizza() {
+    this.hubConnection!.invoke('BuyPizza', this.selectedChoice);
   }
 }

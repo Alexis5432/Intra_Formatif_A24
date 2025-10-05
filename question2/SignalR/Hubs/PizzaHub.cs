@@ -55,6 +55,10 @@ namespace SignalR.Hubs
 
         public async Task BuyPizza(PizzaChoice choice)
         {
+             string groupName = _pizzaManager.GetGroupName(choice);
+            _pizzaManager.BuyPizza(choice);
+            await Clients.Group(groupName).SendAsync("NombresPizza", _pizzaManager.NbPizzas[(int)choice], _pizzaManager.Money[(int)choice]);
+
         }
     }
 }
