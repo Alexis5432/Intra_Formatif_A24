@@ -36,6 +36,7 @@ export class AppComponent {
       commnents: ['',[Validators.minLength(10)]]
 
     })
+
   }
 
   
