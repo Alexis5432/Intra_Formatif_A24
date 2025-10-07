@@ -35,23 +35,28 @@ export class AppComponent {
 
     this.isConnected = true;
     // TODO: Mettre isConnected à true seulement une fois que la connection au Hub est faite
-    this.hubConnection!.on('NbUser', (data) => {
+    this.hubConnection!.on('UpdateNbUsers', (data) => {
       this.nbUsers = data;
 
     });
 
-    this.hubConnection!.on('PizzaPrice', (data) => {
+    this.hubConnection!.on('UpdatePizzaPrice', (data) => {
       this.pizzaPrice = data;
     });
     
-   this.hubConnection!.on('NombresPizza', (data) => {
-    this.nbPizzas = data.nbPizzas;
-    this.money = data.money;
+   this.hubConnection!.on('UpdateNbPizzasAndMoney', (NbPizzas:number, Money:number) => {
+    this.nbPizzas = NbPizzas;
+    this.money = Money;
+   
 });
 
 this.hubConnection!.on('SelectChoice', (data) => {
       this.selectedChoice = data;
     });
+
+    this.hubConnection!.on('UpdateMoney',(data)=> {
+      this.money = data;
+    })
 
 
     this.hubConnection
