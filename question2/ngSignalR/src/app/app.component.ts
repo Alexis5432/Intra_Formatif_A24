@@ -44,16 +44,12 @@ export class AppComponent {
       this.pizzaPrice = data;
     });
     
-   this.hubConnection!.on('UpdateNbPizzasAndMoney', (NbPizzas:number, Money:number) => {
-    this.nbPizzas = NbPizzas;
-    this.money = Money;
+    this.hubConnection!.on('UpdateNbPizzasAndMoney', (NbPizzas:number, Money:number) => {
+      this.nbPizzas = NbPizzas;
+      this.money = Money;
    
-});
-
-this.hubConnection!.on('SelectChoice', (data) => {
-      this.selectedChoice = data;
     });
-
+    
     this.hubConnection!.on('UpdateMoney',(data)=> {
       this.money = data;
     })
@@ -76,6 +72,7 @@ this.hubConnection!.on('SelectChoice', (data) => {
   }
 
   unselectChoice() {
+    this.hubConnection!.invoke('UnselectChoice', this.selectedChoice);
     this.selectedChoice = -1;
   }
 
