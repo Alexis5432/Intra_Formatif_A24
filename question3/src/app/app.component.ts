@@ -27,9 +27,8 @@ export class AppComponent {
       postalcode: ['',[Validators.pattern(/^[A-Z][0-9][A-Z][ ]?[0-9][A-Z][0-9]$/)]],
       rue: ['',],
       comments: ['',[ this.minWordsValidator(10)]]
-    }, { validators: this.nomDansCourriel()
- 
-    })
+    },{ validators: [this.animalsCountValidator(), this.nomDansCourriel()] });
+   
   }
  
     minWordsValidator(minWords: number) {
@@ -77,8 +76,8 @@ export class AppComponent {
  
 animalsCountValidator(): ValidatorFn {
   return (group: AbstractControl): ValidationErrors | null => {
-    const nb = group.get('nbAnimals')?.value;
-    const list = group.get('animals')?.value;
+    const nb = group.get('rue')?.value;
+    const list = group.get('comment')?.value;
  
     if (!nb || !list) return null; // On ne valide pas si vide
  

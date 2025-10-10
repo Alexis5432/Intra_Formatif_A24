@@ -52,10 +52,16 @@
       @if(formGroup.get('comments')?.hasError('nomDansCourriel')) {
     <mat-error> Le nom ne doit pas être dans les commentaires </mat-error>
       }
+    @if(formGroup.errors?.['animalsCountMismatch']) {
+  <mat-error style="display:block; margin-top: 10px;">
+    Le nombre de mots ne correspond pas au numéro de rue.
+  </mat-error>
+}
     </mat-form-field>
+     
  
     <mat-card-actions align="end">
-      <button  mat-raised-button color="primary" >Acheter</button>
+      <button  mat-raised-button color="primary" [disabled]="!formGroup.valid">Acheter</button>
     </mat-card-actions>
   </form>
 </mat-card>
