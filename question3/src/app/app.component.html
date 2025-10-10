@@ -46,7 +46,7 @@
     <mat-form-field style="width: 100%">
       <mat-label>Commentaire</mat-label>
       <textarea matInput placeholder="Votre commentaire" formControlName="comments"></textarea>
-      @if(formGroup.get('comments')?.hasError('minWords')) {
+      @if(formGroup.get('comments')?.hasError('minWordsValidator')) {
     <mat-error> Minimum de 10 mots requis </mat-error>
       }
       @if(formGroup.get('comments')?.hasError('nomDansCourriel')) {

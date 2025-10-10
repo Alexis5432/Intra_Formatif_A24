@@ -26,21 +26,21 @@ export class AppComponent {
       roadnumber: ['',[Validators.required, Validators.min(1000), Validators.max(9999)]],
       postalcode: ['',[Validators.pattern(/^[A-Z][0-9][A-Z][ ]?[0-9][A-Z][0-9]$/)]],
       rue: ['',],
-      comments: ['',[ this.minWordsValidator(10)]]
+      comments: ['',[ this.minWordsValidator()]]
     },{ validators: [this.animalsCountValidator(), this.nomDansCourriel()] });
    
   }
  
-    minWordsValidator(minWords: number) {
+    minWordsValidator() {
   return (control: AbstractControl): ValidationErrors | null => {
-    const value = control.value || '';
-    const words = value.trim().split(" ");
- 
-    if (words.length < minWords) {
-      return { minWords: { required: minWords, actual: words.length } };
+    const comment = control.value;
+    if(!comment){
+      return null;
     }
- 
-    return null;
+    const estValide = comment.split(' ').length >=10
+
+
+    return estValide? null:{minWordsValidator:true}
   };
  
 }
